@@ -32,9 +32,12 @@ public class fase1 extends ScreenAdapter {
   Inimigo inimigos;
   BitmapFont bitmapfont;
 
+
   private Texture img;
   private Sprite barradistancia;
   private ShapeRenderer barra;
+
+
 
   public long inicioTempo;
   public float TempoAtual, TempoAnt;
@@ -53,8 +56,11 @@ public class fase1 extends ScreenAdapter {
 
     //Inicio do contador de tempo
     inicioTempo = TimeUtils.nanoTime();
+
     TempoAtual = 0;
     TempoAnt = 0;
+
+
 
     //Iniciando as classes
     jogador = new Player();
@@ -71,6 +77,7 @@ public class fase1 extends ScreenAdapter {
     distancia = 500;
     distperc = 0;
 
+
     //Barra de distancia
     img = new Texture("distancia.png");
     barradistancia = new Sprite(img);
@@ -78,6 +85,8 @@ public class fase1 extends ScreenAdapter {
 
     barra = new ShapeRenderer();
     barra.setColor(Color.RED);
+
+
 
     
   }
@@ -96,12 +105,17 @@ public class fase1 extends ScreenAdapter {
 
     this.update();
 
+
     if(jogador.getVida() > 0){//Confere se as vidas são maior que 0 ou não
+
+
+
 
 
     if( jogador.getPV() > 0){//Confere se os pontos de vida é maior de 0 ou não
 
         this.testeColisao();
+
 
 
         if(TempoAtual - TempoAnt > 1f){
@@ -114,15 +128,16 @@ public class fase1 extends ScreenAdapter {
         }
 
 
+
+
         game.batch.begin();
         //Chama os draw de cada classe 
         ceu.Draw(game.batch, jogador.GetVelocidade());
         inimigos.Draw(game.batch, jogador.GetVelocidade());
         jogador.Draw(game.batch, TempoAtual);
+
         game.batch.end();
-        this.informacao();//barra de informacao 
-        
-        
+        this.informacao();//barra de informacao  
 
     }else {//Ira resetar a fase para o inicio
 
@@ -135,22 +150,29 @@ public class fase1 extends ScreenAdapter {
     }else {//Caso os pontos de PV for igual ou menor que 0
         game.batch.begin();
         Texture gameover = new Texture("GameOver.png");
+
         game.batch.draw( gameover, (viewport.getScreenWidth()/2) - (gameover.getWidth() / 2), (viewport.getScreenHeight()/2) - (gameover.getHeight() / 2) );
+
+        game.batch.draw( gameover, (viewport.getScreenWidth()/2) - (gameover.getWidth() / 2), (viewport.getScreenHeight()/2) - (gameover.getHeight() / 2));
+
         game.batch.end();
     }
+    }
 
-	}
 
 @Override
   public void resize(int width, int height) {
 
       viewport.update(width, height, true);
+
       barra.setProjectionMatrix(camera.combined);
+
       game.batch.setProjectionMatrix(camera.combined);
   }
 
   private void informacao(){//Barra de informações contendo os pontos de vida
                             //a vida e a barra de distancia percorrida 
+
 
       barra.begin(ShapeRenderer.ShapeType.Filled);
       barra.rect(barradistancia.getX(), barradistancia.getY(), ( (barradistancia.getWidth() * ( distperc/distancia  )  )  ), (barradistancia.getHeight() * 0.8f));
@@ -178,10 +200,12 @@ public class fase1 extends ScreenAdapter {
 
 
 //Teste de colisao das batatas 
+
       if(jogador.temBatata()){
       
           for(int cont = 0; cont < jogador.quantbatata(); cont++){
     
+
           //Teste se colidiiu para a pontuação 
               if(inimigos.Colissao(jogador.batataX(cont),jogador.batataY(cont),jogador.batataW(cont),jogador.batataH(cont),false)){
 
@@ -200,7 +224,13 @@ public class fase1 extends ScreenAdapter {
       jogador.colissao(inimigos.Colissao(jogador.getX(), jogador.getY(), jogador.getWidth() - 20, jogador.getHeight(), true));
 
   }
-  private void update(){//Conta o tempo 
+
+
+          
+
+
+  private void update(){
+
 
             long currentTime = TimeUtils.nanoTime();
             TempoAtual = (currentTime - inicioTempo)/ 1_000_000_000.0f;
@@ -239,8 +269,11 @@ public class fase1 extends ScreenAdapter {
 		jogador.dispose();
     ceu.dispose();
     bitmapfont.dispose();
+
     img.dispose();
     barra.dispose();
+
+
 
 	}
 }

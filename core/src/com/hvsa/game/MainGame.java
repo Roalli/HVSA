@@ -26,6 +26,11 @@ public class MainGame extends com.badlogic.gdx.Game {
   ExtendViewport viewport;
 
 
+
+
+  BitmapFont font;
+  TextButton botaoIniciar;
+
   
   public long inicioTempo;
   public float TempoAtual, TempoAnt;
@@ -41,7 +46,7 @@ public class MainGame extends com.badlogic.gdx.Game {
     //Camera
     camera = new OrthographicCamera();
     viewport = new ExtendViewport(1280, 720, camera);
-   
+
     stage = new Stage(viewport, batch);
 
     //Iniciando o tamanho que sera da tela
@@ -49,6 +54,29 @@ public class MainGame extends com.badlogic.gdx.Game {
     telaWidth = 1280;
     telaHeight = 720;
     Gdx.graphics.setWindowedMode((int)telaWidth, (int)telaHeight);
+
+
+
+
+    //Botões do menu 
+    font = new BitmapFont(Gdx.files.internal("Fonts/HeyComic.fnt"));
+    TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+    buttonStyle.font = font;
+
+    botaoIniciar = new TextButton("Iniciar", buttonStyle);
+    botaoIniciar.setPosition((telaWidth/2) - botaoIniciar.getWidth(), 400);
+
+    botaoIniciar.addListener(new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            MainGame.this.setScreen(new fase1(MainGame.this));
+            System.out.printf("\nClicando");
+        }
+    });
+
+    stage.addActor(botaoIniciar);
+
+
     Gdx.input.setInputProcessor(stage);
 
     MainGame.this.setScreen( new menu(MainGame.this));
@@ -89,6 +117,7 @@ public class MainGame extends com.badlogic.gdx.Game {
 	public void dispose () {
 		batch.dispose();
     stage.dispose();
+    font.dispose();
 
 
 

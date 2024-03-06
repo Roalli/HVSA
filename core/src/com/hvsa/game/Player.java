@@ -32,6 +32,7 @@ public class Player {
     private float TempoAtual, TempoAnt;
     private long startTime;
     private int PV, vida, PVpadrao, pontuacao;
+ 
 
     //Parte para o touch
 
@@ -55,7 +56,10 @@ public class Player {
         PV = PVpadrao;
         vida = 5;
 
+
         pontuacao = 0;
+
+
 
         touching = false;
         touchX = 0;
@@ -360,6 +364,7 @@ private void DetectarTecla() {//Metodo para detectar as teclas predefinidas e se
 
     }
 
+
     public void setUpPontuacao(int pontos){//Aumenta a pontuacao
 
         this.pontuacao += pontos;
@@ -369,6 +374,8 @@ private void DetectarTecla() {//Metodo para detectar as teclas predefinidas e se
     public int getPontuacao(){//Retorna a pontuacao do player
         return this.pontuacao;
     }
+
+
 
     // Fim dos metodos de retorno
 

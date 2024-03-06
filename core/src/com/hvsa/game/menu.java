@@ -24,10 +24,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class menu extends ScreenAdapter {
 
-
   Texture img;
   Sprite titulo;
-
   BitmapFont font;
   TextButton botaoIniciar, botaoOpcao, botaoSair;
   
@@ -43,10 +41,13 @@ public class menu extends ScreenAdapter {
 
         stage = new Stage(game.viewport, game.batch);
 
+
     //Titulo do jogo
     img = new Texture("Titulo.png");
     titulo = new Sprite(img);
     titulo.setPosition( ((game.telaWidth/2) - (titulo.getWidth()/2)),((game.telaHeight/2) - (titulo.getHeight()/2) + ( game.telaHeight * (0.2f )   ) ));
+
+
 
     //Botões do menu 
 
@@ -62,11 +63,19 @@ public class menu extends ScreenAdapter {
 
     //Botao de opcoes
     botaoOpcao = new TextButton("Opções", buttonStyle);
+
     botaoOpcao.setPosition((game.telaWidth/2) - (botaoOpcao.getWidth()/2) , (game.telaHeight/2) - botaoOpcao.getHeight() - (game.telaHeight *(0.12f)) );
 
     //Botao de Sair
     botaoSair = new TextButton("Sair", buttonStyle);
     botaoSair.setPosition((game.telaWidth/2) - (botaoSair.getWidth()/2), (game.telaHeight/2) - botaoSair.getHeight() - (game.telaHeight * (0.19f)));
+
+    botaoOpcao.setPosition((game.telaWidth/2) - (botaoOpcao.getWidth()/2) , (game.telaHeight/2) - botaoOpcao.getHeight() - (game.telaHeight *(0.1f)) );
+
+    //Botao de Sair
+    botaoSair = new TextButton("Sair", buttonStyle);
+    botaoSair.setPosition((game.telaWidth/2) - (botaoSair.getWidth()/2), (game.telaHeight/2) - botaoSair.getHeight() - (game.telaHeight * (0.15f)));
+
 
 
     //Instruções para o que seguir após de clicar nos textos 
@@ -118,8 +127,12 @@ public class menu extends ScreenAdapter {
 
     game.batch.begin();
 
+
    
     titulo.draw(game.batch);
+
+    
+
 
     game.batch.end();
 
@@ -159,7 +172,10 @@ public class menu extends ScreenAdapter {
 
     stage.dispose();
     font.dispose();
+
     img.dispose();
+
+
 
 
 	}
