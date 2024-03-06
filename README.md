@@ -1,4 +1,5 @@
 # HVSA
-Jogo em java com libgdx.
 
-Inspirado em jogos antigos de nave.
+Um jogo ao estilo de nave, com o objetivo de desviar dos aliens e os eliminar com uma bazuca de batata. Ainda em desenvolvimento.
+
+
